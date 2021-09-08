@@ -1,0 +1,24 @@
+{
+  "name": "cataapmongo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adeelzhub/catAppMongos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adeelzhub/catAppMongos/issues"
+  },
+  "homepage": "https://github.com/adeelzhub/catAppMongos#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "mongodb": "^4.1.1"
+  }
+}
