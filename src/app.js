@@ -1,11 +1,11 @@
 const { Collection } = require("mongodb");
 const connection = require("./db/connection");
-const {listItems, adopted, addCat, updateItem, deleteItem,commandList} = require("./utils")
+const {listCats, findCat, addCat, updateCatNumbers, deleteCat,commandList} = require("./utils")
 const command = process.argv[2];
 
 const app = async () =>{
     if(command === "list"){
-        await connection(listItems)
+        await connection(listCats)
             
     }else if(command === "add"){
         const newCat ={
@@ -13,17 +13,20 @@ const app = async () =>{
             adoptionCost: process.argv[4],
             numbers: process.argv[5],
         }
-
         await connection(addCat, newCat)
-    // }else if (command === "update"){
-    //     const id = +process.argv[3];
-    //     const addNumbers = +process.argv[4];
-    //     updateItem(id, addNumbers);
-    // }else if (command === "delete"){
-    //     const id = +process.argv[3];
-    //     deleteItem(id);
-
-
+    }else if(command === "update"){
+        const updateCat ={
+           name: process.argv[3],
+           addNumber: process.argv[4]
+        }
+        await connection(updateCatNumbers, updateCat);
+ 
+    }else if (command === "find"){
+        const catName = process.argv[3];
+        await connection (findCat, catName);
+    }else if (command === "delete"){
+        const catName = process.argv[3];
+        await connection(deleteCat, catName)
     }else{
         console.log("Invalid Command\n")
         console.log("List of valid commands")
@@ -34,14 +37,6 @@ const app = async () =>{
 
 
 
-// app();
+app();
 
 
-const myFunc = async(collection) =>{
-    const lst = await collection.find({}).toArray();
-    lst.map(cat => console.log(`\nCat Id: ${cat.id} \n${cat.numbers} ${cat.name} up for adoption, adoption cost : £${cat.adoptionCost}`));
-    // console.log(lst.length);
-}
-
-
-connection(myFunc)
